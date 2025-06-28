@@ -211,11 +211,17 @@
                 });
             });
 
-            // 예약하기 버튼 클릭
+            // 예약하기 버튼 클릭 - 실제 페이지 이동으로 수정
             document.querySelectorAll('button').forEach(btn => {
-                if (btn.textContent.includes('예약하기')) {
+                if (btn.textContent.includes('예약하기') || btn.textContent.includes('긴급 예약')) {
                     btn.addEventListener('click', function() {
-                        alert('예약 페이지로 이동합니다.');
+                        // 버튼 클릭 시 시각적 피드백
+                        this.classList.add('scale-95');
+                        setTimeout(() => {
+                            this.classList.remove('scale-95');
+                            // 예약 페이지로 이동
+                            location.href = 'nft-tickets.html';
+                        }, 150);
                     });
                 }
             });
