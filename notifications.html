@@ -226,13 +226,21 @@
                 card.classList.add('opacity-75', 'text-gray-400');
             });
 
-            // 모두 읽음 처리 버튼 비활성화
+            // 모두 읽음 처리 버튼 비활성화 및 시각적 피드백
             const markAllReadBtn = document.getElementById('markAllReadBtn');
             markAllReadBtn.textContent = '✅ 모든 알림을 읽었습니다';
             markAllReadBtn.disabled = true;
             markAllReadBtn.className = 'w-full bg-gray-200 text-gray-500 py-3 rounded-lg text-sm font-medium cursor-not-allowed';
-
-            alert('모든 알림을 읽음 처리했습니다.');
+            
+            // 성공 토스트 메시지 표시
+            const toast = document.createElement('div');
+            toast.className = 'fixed top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-lg z-50 shadow-lg';
+            toast.textContent = '모든 알림을 읽음 처리했습니다.';
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                document.body.removeChild(toast);
+            }, 3000);
         }
 
         document.addEventListener('DOMContentLoaded', function() {

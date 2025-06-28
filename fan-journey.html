@@ -536,7 +536,14 @@
         }
 
         function showTimeline() {
-            alert('전체 활동 타임라인 페이지로 이동합니다.');
+            // 버튼 클릭 시 시각적 피드백
+            const button = event.target;
+            button.classList.add('scale-95');
+            setTimeout(() => {
+                button.classList.remove('scale-95');
+                // 타임라인 페이지로 이동 (실제 구현 시 해당 페이지로 변경)
+                location.href = 'index.html';
+            }, 150);
         }
 
         // 모달 외부 클릭 시 닫기

@@ -500,20 +500,48 @@
             const type = document.getElementById('transferTitle').textContent;
             
             if (input.trim() === '') {
-                alert('입력값을 확인해주세요.');
+                // 입력값이 없을 때 시각적 피드백
+                const inputElement = document.getElementById('transferInput');
+                inputElement.classList.add('border-red-500', 'ring-2', 'ring-red-200');
+                setTimeout(() => {
+                    inputElement.classList.remove('border-red-500', 'ring-2', 'ring-red-200');
+                }, 2000);
                 return;
             }
             
-            alert(`${type}가 완료되었습니다.`);
-            closeTransferModal();
+            // 성공 메시지 표시
+            const button = event.target;
+            const originalText = button.textContent;
+            button.textContent = '완료!';
+            button.classList.add('bg-green-500');
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-500');
+                closeTransferModal();
+            }, 1500);
         }
 
         function showOwnershipDetail(nftId) {
-            alert(`${nftId} 소유권 상세 페이지로 이동합니다.`);
+            // 버튼 클릭 시 시각적 피드백
+            const button = event.target;
+            button.classList.add('scale-95');
+            setTimeout(() => {
+                button.classList.remove('scale-95');
+                // 소유권 상세 페이지로 이동 (실제 구현 시 해당 페이지로 변경)
+                location.href = 'nft-tickets.html';
+            }, 150);
         }
 
         function showVerificationHistory(nftId) {
-            alert(`${nftId} 검증 이력을 확인합니다.`);
+            // 버튼 클릭 시 시각적 피드백
+            const button = event.target;
+            button.classList.add('scale-95');
+            setTimeout(() => {
+                button.classList.remove('scale-95');
+                // 검증 이력 페이지로 이동 (실제 구현 시 해당 페이지로 변경)
+                location.href = 'nft-tickets.html';
+            }, 150);
         }
 
         // 모달 외부 클릭 시 닫기

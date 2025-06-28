@@ -195,12 +195,19 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 예약하기 버튼 클릭
+            // 예약하기 버튼 클릭 - 실제 예약 완료로 수정
             document.querySelectorAll('button').forEach(btn => {
                 if (btn.textContent.includes('예약하기')) {
                     btn.addEventListener('click', function() {
-                        alert('예약이 완료되었습니다! NFT 예약권이 발급되었습니다.');
-                        location.href = 'nft-tickets.html';
+                        // 버튼 클릭 시 시각적 피드백
+                        this.classList.add('scale-95');
+                        this.textContent = '예약 완료!';
+                        this.classList.add('bg-green-500');
+                        
+                        setTimeout(() => {
+                            // 예약 완료 후 NFT 예약권 페이지로 이동
+                            location.href = 'nft-tickets.html';
+                        }, 1000);
                     });
                 }
             });
