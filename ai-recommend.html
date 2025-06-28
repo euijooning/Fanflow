@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 맞춤 추천 - Fanflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#60A5FA',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- 상단 네비게이션 -->
+    <nav class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50">
+        <div class="flex items-center justify-between px-4 py-3">
+            <button onclick="history.back()" class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <h1 class="text-lg font-bold text-primary">AI 맞춤 추천</h1>
+            <button class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="pt-16 pb-20 px-4">
+        <!-- 변경: 추천 이유 카드 개선 -->
+        <section class="mb-6">
+            <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-4">
+                <div class="flex items-center gap-3 mb-3">
+                    <div class="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h2 class="text-base font-semibold text-gray-800">지우님을 위한 추천</h2>
+                        <p class="text-sm text-gray-600">당신이 좋아하는 NewJeans, IVE 기반으로 추천합니다</p>
+                    </div>
+                </div>
+                <!-- 변경: 추천 알고리즘 시각화 표현 추가 -->
+                <ul class="flex gap-2 text-sm text-gray-600">
+                    <li class="flex items-center gap-1">🎧 최근 방문 아티스트</li>
+                    <li class="flex items-center gap-1">📍 선호 지역</li>
+                    <li class="flex items-center gap-1">⏰ 일정 여유 있음</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 변경: 관심 아티스트 셀렉터 개선 -->
+        <section class="mb-6">
+            <h3 class="text-lg font-semibold mb-3">관심 아티스트</h3>
+            <div class="flex gap-2 overflow-x-auto pb-2">
+                <button class="flex items-center gap-1 bg-primary text-white px-4 py-2 rounded-full text-sm whitespace-nowrap font-semibold ring-2 ring-primary/30">
+                    🎤 NewJeans
+                    <span class="text-xs ml-1 text-white">추천 중</span>
+                </button>
+                <button class="flex items-center gap-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap">
+                    🎤 IVE
+                </button>
+                <button class="flex items-center gap-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap">
+                    🎤 LE SSERAFIM
+                </button>
+                <button class="flex items-center gap-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap">
+                    🎤 aespa
+                </button>
+                <button class="flex items-center gap-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap">
+                    🎤 BLACKPINK
+                </button>
+            </div>
+        </section>
+
+        <!-- 변경: 추천 팝업 카드 구조 개선 -->
+        <section class="mb-6">
+            <h3 class="text-lg font-semibold mb-3">추천 팝업스토어</h3>
+            <div class="space-y-4">
+                <!-- 카드 1 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-400 to-purple-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">NJ</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h4 class="font-semibold">NewJeans 팝업스토어</h4>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">추천도 95%</span>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700 mb-2">6월 30일 • 서울 강남구</p>
+                            <p class="text-xs text-gray-500 mb-3 line-clamp-2">당신이 좋아하는 NewJeans의 신곡 발매 기념 팝업으로, 최신 굿즈와 특별한 체험을 제공합니다.</p>
+                            <div class="flex gap-2">
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm flex-1">
+                                    예약하기
+                                </button>
+                                <button class="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm">
+                                    공유하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 카드 2 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">IVE</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h4 class="font-semibold">IVE 팝업스토어</h4>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">추천도 88%</span>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700 mb-2">7월 1일 • 서울 홍대</p>
+                            <p class="text-xs text-gray-500 mb-3 line-clamp-2">IVE의 새로운 콘셉트 팝업스토어에서 특별한 포토존과 한정판 굿즈를 만나보세요.</p>
+                            <div class="flex gap-2">
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm flex-1">
+                                    예약하기
+                                </button>
+                                <button class="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm">
+                                    공유하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 카드 3 -->
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-lg transition-all duration-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg flex items-center justify-center">
+                            <span class="text-white font-bold text-sm">LSF</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h4 class="font-semibold">LE SSERAFIM 팝업스토어</h4>
+                                <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">추천도 82%</span>
+                            </div>
+                            <p class="text-sm font-medium text-gray-700 mb-2">7월 1일 • 서울 명동</p>
+                            <p class="text-xs text-gray-500 mb-3 line-clamp-2">LE SSERAFIM의 특별한 팝업 경험으로, 독특한 콘셉트와 프리미엄 굿즈를 제공합니다.</p>
+                            <div class="flex gap-2">
+                                <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm flex-1">
+                                    예약하기
+                                </button>
+                                <button class="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm">
+                                    공유하기
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 변경: 친구 공유 박스 개선 -->
+        <section class="mb-6">
+            <div class="bg-gradient-to-r from-primary to-secondary rounded-lg p-4 text-white text-center">
+                <h3 class="font-semibold mb-2 text-base leading-relaxed">친구와 함께 가요!</h3>
+                <p class="text-sm opacity-90 mb-4 leading-relaxed">이 추천을 친구에게 공유하고 함께 팝업스토어를 즐겨보세요</p>
+                <button class="w-full bg-white text-primary font-semibold py-3 rounded-full shadow-sm hover:scale-95 transition">
+                    친구에게 공유하기 📤
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- 하단 퀵탭 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div class="flex justify-around py-2">
+            <button class="flex flex-col items-center p-2 text-gray-400" onclick="location.href='index.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                </svg>
+                <span class="text-xs">홈</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400" onclick="location.href='calendar.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">캘린더</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400" onclick="location.href='nft-tickets.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-xs">예약</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400" onclick="location.href='fan-journey.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">내정보</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 변경: JavaScript 수정 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 관심 아티스트 버튼 클릭 이벤트
+            const artistButtons = document.querySelectorAll('.flex.gap-2 button');
+            artistButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 모든 버튼 스타일 초기화
+                    artistButtons.forEach(btn => {
+                        btn.className = 'flex items-center gap-1 bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap';
+                        // 추천 중 텍스트 제거
+                        const recommendText = btn.querySelector('span');
+                        if (recommendText) {
+                            recommendText.remove();
+                        }
+                    });
+                    // 클릭된 버튼 스타일 변경
+                    this.className = 'flex items-center gap-1 bg-primary text-white px-4 py-2 rounded-full text-sm whitespace-nowrap font-semibold ring-2 ring-primary/30';
+                    // 추천 중 텍스트 추가
+                    const recommendSpan = document.createElement('span');
+                    recommendSpan.className = 'text-xs ml-1 text-white';
+                    recommendSpan.textContent = '추천 중';
+                    this.appendChild(recommendSpan);
+                });
+            });
+
+            // 예약하기 버튼 클릭
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes('예약하기')) {
+                    btn.addEventListener('click', function() {
+                        alert('예약 페이지로 이동합니다.');
+                    });
+                }
+            });
+
+            // 공유 버튼 클릭
+            const shareButton = document.querySelector('button:contains("친구에게 공유하기")');
+            if (shareButton) {
+                shareButton.addEventListener('click', function() {
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Fanflow AI 추천',
+                            text: 'AI가 추천하는 팝업스토어를 확인해보세요!',
+                            url: window.location.href
+                        });
+                    } else {
+                        alert('공유 기능을 사용할 수 없습니다.');
+                    }
+                });
+            }
+
+            // 공유하기 버튼 클릭 (카드 내)
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes('공유하기')) {
+                    btn.addEventListener('click', function() {
+                        if (navigator.share) {
+                            navigator.share({
+                                title: '팝업스토어 추천',
+                                text: '이 팝업스토어를 추천합니다!',
+                                url: window.location.href
+                            });
+                        } else {
+                            alert('공유 기능을 사용할 수 없습니다.');
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

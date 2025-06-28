@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나의 NFT 보관함 - Fanflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#60A5FA',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- 상단 네비게이션 -->
+    <nav class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50">
+        <div class="flex items-center justify-between px-4 py-3">
+            <button onclick="history.back()" class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <h1 class="text-lg font-bold text-primary">나의 NFT 보관함</h1>
+            <button class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="pt-16 pb-20 px-4">
+        <!-- 변경: NFT 보관함 제목 강화 -->
+        <section class="mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">My NFT Pass</h2>
+                    <p class="text-sm text-gray-600">디지털 예약권을 안전하게 보관하고 있습니다</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 변경: 예약권 상태별 카드 개선 -->
+        <section class="space-y-4">
+            <!-- 사용 전 예약권 -->
+            <div class="bg-white border-2 border-green-200 rounded-lg p-4 shadow-sm">
+                <!-- 변경: NFT 식별자 및 디지털 예약권 뱃지 추가 -->
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-mono text-gray-500">#NFT No. 000123</span>
+                    <div class="flex items-center gap-1 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                        디지털 예약권
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">NJ</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-gray-800 mb-1">NewJeans 팝업스토어</h3>
+                        <p class="text-sm text-gray-600 mb-2">6월 30일 14:00 • 서울 강남구</p>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">✅ 사용 전</span>
+                            <span class="text-xs text-gray-500">입장 가능</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="bg-primary text-white px-3 py-2 rounded-lg text-sm flex-1" onclick="showQR('qr1')">
+                                QR 코드 보기
+                            </button>
+                            <button class="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm" onclick="location.href='popup-detail.html?id=nft123'">
+                                상세보기
+                            </button>
+                            <button class="bg-orange-100 text-orange-700 px-3 py-2 rounded-lg text-sm">
+                                양도하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 방문 임박 예약권 -->
+            <div class="bg-white border-2 border-orange-200 rounded-lg p-4 shadow-sm">
+                <!-- 변경: NFT 식별자 및 디지털 예약권 뱃지 추가 -->
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-mono text-gray-500">#NFT No. 000124</span>
+                    <div class="flex items-center gap-1 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                        디지털 예약권
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">IVE</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-gray-800 mb-1">IVE 팝업스토어</h3>
+                        <p class="text-sm text-gray-600 mb-2">오늘 15:00 • 서울 홍대</p>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">🔔 방문 임박!</span>
+                            <span class="text-xs text-orange-600 font-medium">2시간 후 입장</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="bg-primary text-white px-3 py-2 rounded-lg text-sm flex-1" onclick="showQR('qr2')">
+                                QR 코드 보기
+                            </button>
+                            <button class="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm" onclick="location.href='popup-detail.html?id=nft124'">
+                                상세보기
+                            </button>
+                            <button class="bg-orange-100 text-orange-700 px-3 py-2 rounded-lg text-sm">
+                                양도하기
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 사용 완료 예약권 -->
+            <div class="bg-white border-2 border-gray-200 rounded-lg p-4 shadow-sm opacity-75">
+                <!-- 변경: NFT 식별자 및 디지털 예약권 뱃지 추가 -->
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-mono text-gray-500">#NFT No. 000125</span>
+                    <div class="flex items-center gap-1 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                        </svg>
+                        디지털 예약권
+                    </div>
+                </div>
+                
+                <div class="flex items-start gap-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-gray-400 to-gray-500 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">LSF</span>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-semibold text-gray-800 mb-1">LE SSERAFIM 팝업스토어</h3>
+                        <p class="text-sm text-gray-600 mb-2">6월 25일 16:00 • 서울 명동</p>
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">✅ 사용 완료</span>
+                            <span class="text-xs text-gray-500">방문 완료</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="bg-gray-100 text-gray-700 px-3 py-2 rounded-lg text-sm flex-1" onclick="location.href='popup-detail.html?id=nft125'">
+                                상세보기
+                            </button>
+                            <button class="bg-purple-100 text-purple-700 px-3 py-2 rounded-lg text-sm" title="팝업스토어 경험을 공유하고 다른 팬들과 소통해보세요">
+                                리뷰 작성
+                            </button>
+                            <button class="bg-blue-100 text-blue-700 px-3 py-2 rounded-lg text-sm">
+                                NFT 전송
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 변경: QR 코드 모달 개선 -->
+        <div id="qrModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+            <div class="bg-white rounded-lg p-6 mx-4 max-w-sm w-full">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold">QR 코드</h3>
+                    <button onclick="closeQR()" class="text-gray-500 hover:text-gray-700">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="text-center">
+                    <!-- 변경: QR 코드 이미지 추가 -->
+                    <img id="qrImage" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZmFmYiIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==" alt="QR Code" class="w-48 h-48 mx-auto mb-4 border-2 border-gray-200 rounded-lg">
+                    <!-- 변경: 유효시간 정보 추가 -->
+                    <p class="text-sm text-gray-600 mb-2">유효시간: 14:00 ~ 14:30</p>
+                    <p class="text-xs text-gray-500">QR 코드를 입구에서 스캔해주세요</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 하단 퀵탭 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div class="flex justify-around py-2">
+            <button class="flex flex-col items-center p-2 text-gray-400" onclick="location.href='index.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                </svg>
+                <span class="text-xs">홈</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400" onclick="location.href='calendar.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">캘린더</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-primary" onclick="location.href='nft-tickets.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-xs">예약</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400" onclick="location.href='fan-journey.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">내정보</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 변경: JavaScript 기능 개선 -->
+    <script>
+        function showQR(qrId) {
+            const modal = document.getElementById('qrModal');
+            const qrImage = document.getElementById('qrImage');
+            
+            // QR 코드별 다른 이미지 설정 (실제로는 각각 다른 QR 코드)
+            if (qrId === 'qr1') {
+                qrImage.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2Y5ZmFmYiIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==";
+            } else if (qrId === 'qr2') {
+                qrImage.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2ZkZWVlZSIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iIzAwMCIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iI2ZmZiIvPjxwYXRoIGQ9Ik0yMCAyMGgxNjB2MTYwSDIweiIgZmlsbD0iIzAwMCIvPjwvc3ZnPg==";
+            }
+            
+            modal.classList.remove('hidden');
+        }
+
+        function closeQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('hidden');
+        }
+
+        // 모달 외부 클릭 시 닫기
+        document.getElementById('qrModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeQR();
+            }
+        });
+
+        // 리뷰 작성 버튼 클릭
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('리뷰 작성')) {
+                btn.addEventListener('click', function() {
+                    alert('리뷰 작성 페이지로 이동합니다.\n팝업스토어 경험을 공유하고 다른 팬들과 소통해보세요!');
+                });
+            }
+        });
+
+        // 양도하기 버튼 클릭
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('양도하기')) {
+                btn.addEventListener('click', function() {
+                    alert('NFT 예약권 양도 기능은 준비 중입니다.');
+                });
+            }
+        });
+
+        // NFT 전송 버튼 클릭
+        document.querySelectorAll('button').forEach(btn => {
+            if (btn.textContent.includes('NFT 전송')) {
+                btn.addEventListener('click', function() {
+                    alert('NFT 전송 기능은 준비 중입니다.');
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fanflow - 아이돌 팝업스토어</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#60A5FA',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- 상단 네비게이션 -->
+    <nav class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50">
+        <div class="flex items-center justify-between px-4 py-3">
+            <h1 class="text-lg font-bold text-primary">Fanflow</h1>
+            <button class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="pt-16 pb-20 px-4">
+        <!-- 오늘의 추천 팝업 -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold mb-3">오늘의 추천 팝업</h2>
+            <div class="space-y-3">
+                <div class="bg-gradient-to-r from-primary to-secondary rounded-lg p-4 text-white">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-semibold">NewJeans 팝업스토어</h3>
+                            <span class="text-xs bg-red-500 text-white px-2 py-0.5 rounded-full">마감 임박</span>
+                            <p class="text-sm opacity-90 mt-1">서울 강남구 • 오늘 마감</p>
+                        </div>
+                        <button class="bg-white text-primary px-4 py-2 rounded-full text-sm font-medium shadow-sm active:scale-95 transition-transform">
+                            예약하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 내가 예약한 팝업 -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold mb-3">내 예약</h2>
+            <div class="bg-gray-50 rounded-lg p-4">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="flex items-center">
+                            <h3 class="font-medium">IVE 팝업스토어</h3>
+                            <span class="ml-2 px-2 py-0.5 bg-primary text-white text-xs rounded-full">예약 확정</span>
+                        </div>
+                        <p class="text-sm text-gray-600">7월 1일 • 서울 홍대</p>
+                    </div>
+                    <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm">
+                        QR 입장
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- NFT/굿즈 현황 -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold mb-3">내 보유 현황</h2>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-blue-50 rounded-lg p-4 text-center">
+                    <div class="flex items-center justify-center space-x-2">
+                        <span class="text-xl">🔗</span>
+                        <div>
+                            <div class="text-2xl font-bold text-primary">5</div>
+                            <div class="text-sm text-gray-600">보유 NFT</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-orange-50 rounded-lg p-4 text-center">
+                    <div class="flex items-center justify-center space-x-2">
+                        <span class="text-xl">🎁</span>
+                        <div>
+                            <div class="text-2xl font-bold text-accent">12</div>
+                            <div class="text-sm text-gray-600">보유 굿즈</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 알림 배너 -->
+        <section class="mb-6">
+            <div class="bg-red-50 border border-red-200 rounded-lg p-4 ring-1 ring-red-100">
+                <div class="flex items-center">
+                    <div class="w-2 h-2 bg-red-500 rounded-full mr-3"></div>
+                    <div>
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-sm">⏰</span>
+                            <p class="text-sm font-semibold text-orange-600">예약 임박 알림</p>
+                        </div>
+                        <p class="text-xs text-red-600">IVE 팝업스토어 방문까지 2시간 남았습니다</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 하단 퀵탭 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div class="flex justify-around py-2">
+            <button class="flex flex-col items-center p-2 text-primary active:scale-95 transition-transform">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                </svg>
+                <span class="text-xs font-semibold">홈</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400 active:scale-95 transition-transform" onclick="location.href='calendar.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">캘린더</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400 active:scale-95 transition-transform" onclick="location.href='nft-tickets.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-xs">예약</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400 active:scale-95 transition-transform" onclick="location.href='fan-journey.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">내정보</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        // 간단한 인터랙션
+        document.addEventListener('DOMContentLoaded', function() {
+            // 예약하기 버튼 클릭
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes('예약하기')) {
+                    btn.addEventListener('click', function() {
+                        alert('예약 페이지로 이동합니다.');
+                    });
+                }
+            });
+
+            // QR 입장 버튼 클릭
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes('QR 입장')) {
+                    btn.addEventListener('click', function() {
+                        location.href = 'nft-tickets.html';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

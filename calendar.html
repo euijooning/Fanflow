@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>팝업 캘린더 - Fanflow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#60A5FA',
+                        accent: '#F59E0B'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white">
+    <!-- 상단 네비게이션 -->
+    <nav class="fixed top-0 left-0 right-0 bg-white border-b border-gray-200 z-50">
+        <div class="flex items-center justify-between px-4 py-3">
+            <button onclick="history.back()" class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+            </button>
+            <h1 class="text-lg font-bold text-primary">팝업 캘린더</h1>
+            <button class="p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.207A1 1 0 013 6.5V4z"></path>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 메인 컨텐츠 -->
+    <main class="pt-16 pb-20 px-4">
+        <!-- 변경: 필터 바 인터랙션 향상 및 정렬 기준 개선 -->
+        <section class="mb-4">
+            <div class="flex justify-between items-center overflow-x-auto pb-2">
+                <!-- 지역 필터 그룹 -->
+                <div class="flex space-x-2">
+                    <button class="bg-primary text-white px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0 font-semibold ring-2 ring-primary/30">전체</button>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0">서울</button>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0">부산</button>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0">대구</button>
+                </div>
+                <!-- 정렬 기준 그룹 -->
+                <div class="flex space-x-2">
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0">최신순</button>
+                    <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0">거리순</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 변경: 날짜 섹션별 "오늘" 뱃지 추가 -->
+        <section class="mb-6">
+            <div class="inline-flex items-center mb-3">
+                <h2 class="text-lg font-semibold text-gray-800">6월 30일</h2>
+                <span class="ml-2 text-xs bg-primary text-white px-2 py-0.5 rounded-full">오늘</span>
+            </div>
+            <div class="space-y-3">
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h3 class="font-semibold">NewJeans 팝업스토어</h3>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">예약 가능</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">서울 강남구 • 10:00-18:00</p>
+                            <!-- 변경: 팝업 카드 내부 시각 정보 강화 -->
+                            <p class="text-sm text-gray-700 font-medium">⏰ 마감까지 2시간 남음</p>
+                        </div>
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm">
+                            예약하기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h3 class="font-semibold">IVE 팝업스토어</h3>
+                                <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">예약 완료</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">서울 홍대 • 12:00-20:00</p>
+                            <p class="text-sm text-gray-700 font-medium">📅 방문 예정</p>
+                        </div>
+                        <!-- 변경: 상세보기 버튼 스타일 명확화 -->
+                        <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg text-sm border border-gray-300 hover:scale-105 transition-transform">
+                            상세보기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7월 1일 섹션 -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold mb-3 text-gray-800">7월 1일</h2>
+            <div class="space-y-3">
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h3 class="font-semibold">LE SSERAFIM 팝업스토어</h3>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">예약 가능</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">서울 명동 • 11:00-19:00</p>
+                            <!-- 변경: 팝업 카드 내부 시각 정보 강화 -->
+                            <p class="text-sm text-gray-700 font-medium">🆕 신규 오픈</p>
+                        </div>
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm">
+                            예약하기
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h3 class="font-semibold">aespa 팝업스토어</h3>
+                                <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">마감 임박</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">서울 강남구 • 09:00-17:00</p>
+                            <!-- 변경: 팝업 카드 내부 시각 정보 강화 -->
+                            <p class="text-sm text-gray-700 font-medium">🚨 마감까지 30분 남음</p>
+                        </div>
+                        <!-- 변경: 긴급 예약 버튼 강조 -->
+                        <button class="bg-accent text-white px-4 py-2 rounded-lg text-sm shadow-md animate-pulse">
+                            긴급 예약
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7월 2일 섹션 -->
+        <section class="mb-6">
+            <h2 class="text-lg font-semibold mb-3 text-gray-800">7월 2일</h2>
+            <div class="space-y-3">
+                <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <div class="flex items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-2 mb-2">
+                                <h3 class="font-semibold">BLACKPINK 팝업스토어</h3>
+                                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">예약 가능</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mb-2">서울 잠실 • 10:00-18:00</p>
+                            <!-- 변경: 팝업 카드 내부 시각 정보 강화 -->
+                            <p class="text-sm text-gray-700 font-medium">🎯 예약 시작</p>
+                        </div>
+                        <button class="bg-primary text-white px-4 py-2 rounded-lg text-sm">
+                            예약하기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 변경: 하단 퀵탭 UX 통일 -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200">
+        <div class="flex justify-around py-2">
+            <button class="flex flex-col items-center p-2 text-gray-400 active:scale-95 transition-transform" onclick="location.href='index.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
+                </svg>
+                <span class="text-xs">홈</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-primary font-semibold">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">캘린더</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400 active:scale-95 transition-transform" onclick="location.href='nft-tickets.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-xs">예약</span>
+            </button>
+            <button class="flex flex-col items-center p-2 text-gray-400 active:scale-95 transition-transform" onclick="location.href='fan-journey.html'">
+                <svg class="w-6 h-6 mb-1" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-xs">내정보</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- 변경: JavaScript 오류 수정 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 필터 버튼 클릭 이벤트
+            const filterButtons = document.querySelectorAll('.flex.space-x-2 button, .flex.justify-between button');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // 모든 버튼 스타일 초기화
+                    filterButtons.forEach(btn => {
+                        btn.className = 'bg-gray-200 text-gray-700 px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0';
+                    });
+                    // 클릭된 버튼 스타일 변경
+                    this.className = 'bg-primary text-white px-4 py-2 rounded-full text-sm whitespace-nowrap flex-shrink-0 font-semibold ring-2 ring-primary/30';
+                });
+            });
+
+            // 예약하기 버튼 클릭
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes('예약하기')) {
+                    btn.addEventListener('click', function() {
+                        alert('예약 페이지로 이동합니다.');
+                    });
+                }
+            });
+
+            // 상세보기 버튼 클릭
+            document.querySelectorAll('button').forEach(btn => {
+                if (btn.textContent.includes('상세보기')) {
+                    btn.addEventListener('click', function() {
+                        location.href = 'popup-detail.html';
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
